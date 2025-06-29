@@ -66,7 +66,7 @@
 // 2 -- VARIANT --
 
 // Standard
-'use strict';
+// 'use strict';
 
 // const switcher = document.querySelector('.theme-switcher');
 // let isExtraTheme = false;
