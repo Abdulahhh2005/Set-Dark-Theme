@@ -1,5 +1,5 @@
-/* #region page */
-.page {
+/* #region 1 VAR */
+/* .page {
   --color-page: #485268;
   --bg-page: #f5f6fa;
 
@@ -29,9 +29,7 @@
   --color-header: #fff;
   --bg-header: #333a4a;
 }
-/* #endregion */
 
-/* #region header */
 .header {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -43,9 +41,7 @@
 
   transition: color 0.3s, background-color 0.3s;
 }
-/* #endregion */
 
-/* #region theme */
 .theme-switcher {
   width: 60px;
   height: max-content;
@@ -68,5 +64,43 @@
 
 .theme-switcher--theme--dark::after {
   transform: translateX(100%);
+} */
+/* #endregion */
+
+/* #region 2 VAR*/
+.page__body {
+  background-color: var(--bg-color-page);
+}
+
+:root {
+  --color-page: #F9512E;
+  --bg-color-page: #FFEEFC;
+  --switch-transform: 0;
+}
+
+.theme-switcher {
+  --size-switcher: 60px;
+
+  display: flex;
+  align-items: center;
+  width: var(--size-switcher);
+  cursor: pointer;
+  border-radius: calc(var(--size-switcher) / 2);
+  border: 2px solid var(--color-page);
+
+  background-color: var(--color-page);
+}
+
+.theme-switcher::after {
+  content: '';
+  display: block;
+  position: relative;
+  width: calc(var(--size-switcher) / 2);
+  height: calc(var(--size-switcher) / 2);
+  border-radius: calc(var(--size-switcher) / 2);
+  background-color: var(--bg-color-page);
+
+  transition: transform 0.3s;
+  transform: translateX(var(--switch-transform));
 }
 /* #endregion */

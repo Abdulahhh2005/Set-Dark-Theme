@@ -1,22 +1,26 @@
+// ----------------------------------------------------------------------------------------------------------------
+
+// 1 -- VARIANT --
+
 //У коді також окрім самого перемикача ми змінюємо і назву тему!
 
 // Скороченна версія яка додає та видаляє класси за допомогою .toggle
-'use strict';
+// 'use strict';
 
-const page = document.querySelector('.page');
-const switcher = document.querySelector('.theme-switcher');
-const themeName = document.querySelector('.theme-name');
+// const page = document.querySelector('.page');
+// const switcher = document.querySelector('.theme-switcher');
+// const themeName = document.querySelector('.theme-name');
 
-switcher.addEventListener('click', () => {
-  page.classList.toggle('page--theme--dark');
-  switcher.classList.toggle('theme-switcher--theme--dark');
+// switcher.addEventListener('click', () => {
+//   page.classList.toggle('page--theme--dark');
+//   switcher.classList.toggle('theme-switcher--theme--dark');
   
-  if (page.classList.contains('page--theme--dark')) {
-    themeName.innerHTML = 'Theme: <em>dark</em>';
-  } else {
-    themeName.innerHTML = 'Theme: light';
-  }
-});
+//   if (page.classList.contains('page--theme--dark')) {
+//     themeName.innerHTML = 'Theme: <em>dark</em>';
+//   } else {
+//     themeName.innerHTML = 'Theme: light';
+//   }
+// });
 
 // Звичайна версія
 // 'use strict';
@@ -56,3 +60,58 @@ switcher.addEventListener('click', () => {
 
 // textContent - вставляє текст без форматування (теги показує як текст).
 // innerHTML - вставляє HTML і теги працюють.
+
+// ----------------------------------------------------------------------------------------------------------------
+
+// 2 -- VARIANT --
+
+// Standard
+'use strict';
+
+// const switcher = document.querySelector('.theme-switcher');
+// let isExtraTheme = false;
+
+// switcher.addEventListener('click', () => {
+//   if (isExtraTheme) {
+//     // Default theme
+//     document.documentElement.style.setProperty('--color-page', '#F9512E');
+//     document.documentElement.style.setProperty('--bg-color-page', '#FFEEFC');
+//     document.documentElement.style.setProperty('--switch-transform', '0');
+//   } else {
+//     // Extra theme
+//     document.documentElement.style.setProperty('--color-page', '#1C1A26');
+//     document.documentElement.style.setProperty('--bg-color-page', '#EEF7FF');
+//     document.documentElement.style.setProperty('--switch-transform', '100%');
+//   }
+//   isExtraTheme = !isExtraTheme;
+// });
+
+// В цьому випадку ми оголошуємо кольори та анімацію для перемикача глобально (через :root)
+// І при кліканні на перемикач ми змінюємо властивості.
+// Звертаєємось теж глобально (адже звернутись до конкретного елемента напряму не можна)
+// style.setProperty відповідає за змінення у змінної значення 
+// Для темной теми можно использоваться сменну 'isDark' вместо 'isExtraTheme'
+
+// Simplified
+'use strict';
+
+const switcher = document.querySelector('.theme-switcher');
+let isExtraTheme = false;
+
+switcher.addEventListener('click', () => {
+  isExtraTheme = !isExtraTheme;
+
+  document.documentElement.style.setProperty('--color-page', isExtraTheme ? '#1C1A26' : '#F9512E');
+  document.documentElement.style.setProperty('--bg-color-page', isExtraTheme ? '#EEF7FF' : '#FFEEFC');
+  document.documentElement.style.setProperty('--switch-transform', isExtraTheme ? '100%' : '0');
+});
+
+
+// (Для SCSS непрацює)
+// SCSS-переменные ($color-page) — это константы, которые существуют только на этапе компиляции (build time).
+// После компиляции SCSS в CSS — они превращаются в конкретные значения и исчезают.
+// А
+// CSS-переменные (--color-page) — остаются в итоговом CSS, доступны в браузере и могут менять свои 
+// значения динамически во время работы страницы через JS.
+
+// ----------------------------------------------------------------------------------------------------------------
